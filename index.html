@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Example Calendar w/ AngularJS Sprinkles</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="css/reset.css"></link>
+        <link rel="stylesheet" href="css/calendar.css"></link>
+        <script src="js/angular.min.js"></script>
+        <script src="js/sugar-1.3.9.min.js"></script>
+        <script src="js/calendar.js"></script>
+        <style>
+            body{ background-color: #333; font-family:Helvetica; color:#666; }
+            header{ margin-bottom:20px; }
+            header h1{ font-size: 28px; margin-bottom:5px; }
+            header h2{ font-size: 16px; }
+            footer{ padding: 10px 0; font-size:11px; font-color: #333; border-top: 1px dotted #333; }
+            footer p{ margin-bottom:5px; }
+            .content{ margin: 0 auto; width:960px; padding-top:40px; padding:20px; background-color: white; }
+            .calendarWrapper{ margin-bottom:20px; }
+        </style>
+    </head>
+    <body>
+        <section class="content">
+            <header>
+                <h1>Example Calendar w/ AngularJS Sprinkles</h1>
+                <h2>A dynamic calendar module based on AngularJS</h2>
+            </header>
+            <section class="calendarWrapper" data-ng-app="calendar">
+                <div class="calendar" data-ng-controller="CalendarController">
+                    <div class="controls">
+                        <button class="button previousMonth" data-ng-click="previousMonth()">&lt;</button>
+                        <button class="button nextMonth" data-ng-click="nextMonth()">&gt;</button>
+                        <h2 class="label">{{currentDate.format('{Month} {yyyy}')}}</h2>
+                    </div>
+                    <table class="list">
+                        <tr class="row">
+                            <td class="item weekday">Sunday</td>
+                            <td class="item weekday">Monday</td>
+                            <td class="item weekday">Tuesday</td>
+                            <td class="item weekday">Wednesday</td>
+                            <td class="item weekday">Thursday</td>
+                            <td class="item weekday">Friday</td>
+                            <td class="item weekday">Saturday</td>
+                        </tr>
+                        <tr class="row"
+                            data-ng-repeat="week in dates">
+                            <td class="item"
+                                data-ng-repeat="item in week"
+                                data-ng-class="{disabled:item.disabled, today:item.date.isToday()}"
+                                data-ng-click="selectDate(item.date)">
+                                <span class="date">{{item.date.getDate()}}</span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </section>
+            <footer>
+                <p>Code wrangled by <a href="http://johncblandii.com">John C. Bland II</a>.</p>
+                <p>Libraries used: <a href="http://angularjs.com">AngularJS</a> | <a href="http://sugarjs.com">SugarJS</a>
+            </footer>
+        </section>
+    </body>
+</html>
